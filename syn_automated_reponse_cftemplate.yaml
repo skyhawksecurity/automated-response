@@ -9,18 +9,18 @@ Parameters:
     AllowedValues:
       - single
       - multi
-      
+
   CrossAccountAccessRole:
     Description: Cross-account access role name for multi-account response mode. Ignore if using single-account response mode.
     Type: String
-    Default: RadwareCWPAutomatedResponse
+    Default: SkyhawkSecuritySYNAutomatedResponse
 
 Resources:
   InputTopic:
     Type: AWS::SNS::Topic
     Properties:
-      DisplayName: 'RadwareCWP-Findings'
-      TopicName: 'RadwareCWP-Findings'
+      DisplayName: 'SkyhawkSecuritySYN-Findings'
+      TopicName: 'SkyhawkSecuritySYN-Findings'
 
   InputTopicPolicy:
     Type: AWS::SNS::TopicPolicy
@@ -41,16 +41,16 @@ Resources:
   Solution:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: RadwareCWP-Automated-Response
-      Description: 'Automated reponses to Radware CWP security findings'
-      CodeUri: 
-        Bucket: 
+      FunctionName: SkyhawkSecuritySYN-Automated-Response
+      Description: 'Automated reponses to Skyhawk Security SYN security findings'
+      CodeUri:
+        Bucket:
           Fn::Join:
           - ''
-          - - 'radware-cwp-devops-'
+          - - 'skyhawk-syn-devops-'
             - !Ref 'AWS::Region'
           # If deploying CFT manually, replace this join with a string (e.g. Bucket: my-custom-bucket-name
-        Key: 'radware_cwp_automated_response/radware_cwp_automated_response.zip'
+        Key: 'automated_response/syn_automated_response.zip'
         # Key is the name of the zip file which contains lambda_function.py
       Runtime: python3.8
       Timeout: 120 # Most will be under 10 seconds
@@ -99,7 +99,7 @@ Resources:
           Type: SNS
           Properties:
             Topic: !Ref InputTopic
-            
+
   LambdaLogsLogGroup:
     Type: AWS::Logs::LogGroup
     Properties:

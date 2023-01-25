@@ -86,7 +86,7 @@ def process_message(source_message):
                 print("\nThe AWS account of this Lambda execution role does not match the account of the target failed resource. \nMulti-account mode detected and activated.")
                 role_arn = ''.join(['arn:aws:iam::', failed_resource_account_id, ':role/'])
                 # This allows users to set their own role name if they have a different naming convention
-                role_arn = ''.join([role_arn, cross_account_role_name]) if cross_account_role_name else ''.join([role_arn, 'RadwareCWPAutomatedResponse'])
+                role_arn = ''.join([role_arn, cross_account_role_name]) if cross_account_role_name else ''.join([role_arn, 'SkyhawkSecuritySYNAutomatedResponse'])
 
                 global all_session_credentials
                 # create an STS client object that represents a live connection to the STS service

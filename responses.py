@@ -1,5 +1,5 @@
 '''
-For Alert: This example includes the extraction of Radware's CWP json Alert from SNS,
+For Alert: This example includes the extraction of Skyhawk Security's SYN json Alert from SNS,
     extraction of relevant AWS resources that could have been compromised
     and the responses available in order to stop any malicious operations by those resources.
     For compromised users we can respond by blocking his console login (delete login profile),
@@ -17,7 +17,7 @@ For Alert: This example includes the extraction of Radware's CWP json Alert from
     For cloudtrail logs, if a trail was stopped, we can re-start it.
     For S3 buckets, if a bucket was made publicly accessed, we can block it.
 
-For Hardening: This example includes the extraction of Radware's CWP json Hardening Warning (Misconfiguration, Exposed Machines, Exposed Database) from SNS,
+For Hardening: This example includes the extraction of Skyhawk Security's SYN json Hardening Warning (Misconfiguration, Exposed Machines, Exposed Database) from SNS,
     extraction of relevant AWS resources that failed to pass misconfiguration rules or that are exposed
     and the responses available in order to avoid option of attackers to take advantage of these vulnerabilities.
     For users with console login and no MFA configured we can respond by blocking his console login (delete login profile).
@@ -215,7 +215,7 @@ def stop_instances(ec2_client, machines):
 
 def get_empty_security_group(ec2_client, vpc_id):
     # find or create if not exists new empty security group
-    group_name = 'RadwareCwpEmptySecurityGroup_' + vpc_id
+    group_name = 'SkyhawkSecuritySYNEmptySecurityGroup_' + vpc_id
     try:
         security_group_list = ec2_client.describe_security_groups(GroupNames=[group_name])
         security_group = security_group_list['SecurityGroups'][0]

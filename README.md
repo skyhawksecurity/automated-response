@@ -1,6 +1,6 @@
-# Radware CWP Automated Response
+# Skyhawk Security SYN Automated Response
 
-This open source AWS tool consumes the published security findings detected in Radware CWP to then trigger a response in the AWS account of the resource. This project covers several example use cases, such as: quarantine a user involved in an attack, quarantine a compromised machine, disable AWS console access for users without Multi-Factor Authentication, deactivate unused user access keys and many more.
+This open source AWS tool consumes the published security findings detected in Skyhawk Security SYN to then trigger a response in the AWS account of the resource. This project covers several example use cases, such as: quarantine a user involved in an attack, quarantine a compromised machine, disable AWS console access for users without Multi-Factor Authentication, deactivate unused user access keys and many more.
 
 The CFT deployment process will create an SNS Topic, an IAM Role, CloudWatch Log Group (default 731 days retention), and a Lambda Function. Messages published to the created SNS Topic trigger the Lambda Function on-demand.
 
@@ -13,7 +13,7 @@ This CFT stack has 2 parameters:
 - **CrossAccountAccessRole** - Cross-account access role name for multi-account response mode. Ignore if using single-account response mode.
 
 ### [Option 1] One-click CFT Deployment:
-[<img src="docs/pictures/cloudformation-launch-stack.png">](https://console.aws.amazon.com/cloudformation/home?#/stacks/new?stackName=RadwareCWP-Automated-Response&templateURL=https://radware-cwp-devops-us-east-1.s3.amazonaws.com/radware_cwp_automated_response/radware_cwp_automated_reponse_cftemplate.yaml)
+[<img src="docs/pictures/cloudformation-launch-stack.png">](https://console.aws.amazon.com/cloudformation/home?#/stacks/new?stackName=SkyhawkSecuritySYN-Automated-Response&templateURL=https://radware-cwp-devops-us-east-1.s3.amazonaws.com/radware_cwp_automated_response/radware_cwp_automated_reponse_cftemplate.yaml)
 > Note: One-click CFT deployment currently works for regions: us-east-1, us-east-2, us-west-1, us-west-2, ca-central-1, eu-central-1. The AWS region you are actively logged into will be the region of deployment.
 1. Fill in the parameter fields. 
 1. Click **Next** twice.
@@ -25,7 +25,7 @@ This CFT stack has 2 parameters:
 1. Download the contents of this repo.
 1. Build your own Lambda deployment file (see [Appendix A](#appendix-A))
 1. Upload the deployment file to an S3 bucket 
-1. Modify `radware_cwp_automated_response.yaml` lines `47` and `53` and enter values for `bucket` and `key` (zip file), respectively. Remove lines `48-51`.
+1. Modify `syn_automated_response.yaml` lines `47` and `53` and enter values for `bucket` and `key` (zip file), respectively. Remove lines `48-51`.
 1. Login to the AWS console, select a region, and navigate to CloudFormation. 
 1. Click **Create stack**
 1. Under **Specify template**, click **Upload a template file**
@@ -33,7 +33,7 @@ This CFT stack has 2 parameters:
 1. Click **Next** twice.
 1. Under **Capabilities and transforms**, click to check the **3** pending acknowledgements: "_I acknowledge..._". (or use "--capabilities CAPABILITY_IAM" if using the AWS CLI.)
 1. Click **Create stack**.
-1. After the process finished view the **Outputs** tab. The **InputTopicARN** value will be needed for the next step in the Radware CWP console.
+1. After the process finished view the **Outputs** tab. The **InputTopicARN** value will be needed for the next step in the Skyhawk Security SYN console.
 
 ## Deploy for Multi-account mode
 
@@ -57,8 +57,8 @@ This script will create the IAM role and policy for the additional account.
 
 ## Post-Deployment Steps
 
-### Radware CWP Setup:
-1. Log into **Radware CWP** and then click **Settings** > **Manage Cloud Accounts** from the menu at the top. 
+### Skyhawk Security SYN Setup:
+1. Log into **Skyhawk Security SYN** and then click **Settings** > **Manage Cloud Accounts** from the menu at the top. 
 1. Find the AWS cloud account you want to get alerts from in the list, click **Activate** under the **Automated Response** column.
 1. In the **Activate Automated Response** dialogue box, under step 2, paste the **InputTopicARN** value from the CFT deployment process. 
 1. Click **Activate**.
@@ -75,7 +75,7 @@ All done!
 ##### Option 2 - CWP Native Test
 It is recommended to perform the synthetic test first before attempting a CWP native test.
 1. Temporarily set the `CwpScoreFilter` parameter to `4,5,6,7,8,9,10`
-1. Login to an AWS account that is already protected by Radware CWP with [automated response](#radware-cwp-setup).
+1. Login to an AWS account that is already protected by Skyhawk Security SYN with [automated response](#skyhawk-security-syn-setup).
 1. Create a test S3 bucket and set the bucket policy to allow public acess. You should see Public warnings in the AWS console. This will trigger CWP and push a *WarningEntity* payload.
 1. Validate the Lambda function logs and the results in S3.
 1. Reset the `CwpScoreFilter` parameter to the desired value (e.g. `7,8,9,10`)

@@ -4,9 +4,9 @@ import lambda_function
 
 """
     This is a local test file to test and debug your bots execution in your local environment
-    The way to use it is by filling the message variable with the relevant Dome9 notification record that should trigger your bot 
-    You can use some notification samples from sample_compliance_notification folder 
-    Or sample it from the output sns that Dome9 send it to 
+    The way to use it is by filling the message variable with the relevant Dome9 notification record that should trigger your bot
+    You can use some notification samples from sample_compliance_notification folder
+    Or sample it from the output sns that Dome9 send it to
 """
 
 message = r'''
@@ -14,15 +14,15 @@ message = r'''
         "accountIds": [
             "870047315808"
         ],
-        "accountName": "Radware Test",
+        "accountName": "Skyhawk Security Test",
         "cloudPlatform": null,
         "objectType": "WarningEntity",
-        "objectPortalURL": "https://portal.cwp.radwarecloud.com/#/data-center/hardening/338392969745",
+        "objectPortalURL": "https://app.skyhawk.security/#/data-center/hardening/338392969745",
         "id": "338392789745",
         "title": "Multiple ports of 1 machine exposed by security group DetectionTierSG_DavidJ ",
         "score": "3",
         "createdDate": "2020-09-21T18:31:20",
-        "vendor": "Radware",
+        "vendor": "SkyhawkSecurity",
         "apiVersion": "1.00",
         "hardeningType": "ExposedMachines",
         "status": "NEW",
@@ -31,7 +31,7 @@ message = r'''
         "lastDetectionDate": "2020-09-21T18:31:20",
         "description": "The current configuration  of security group DetectionTierSG_DavidJ allows anyone on the internet to access multiple ports of 1 machine. Machines using this security group might be  exploited by threat actors to gain access to your workloads and data.",
         "recommendation": "Modify the rules of  of security group DetectionTierSG_DavidJ so that it doesn't allow unrestricted ingress access to multiple ports.",
-        "subject": "Publicly exposed ports on 1 machine - detected in account Radware SSA (ID: 334049999223)",
+        "subject": "Publicly exposed ports on 1 machine - detected in account Skyhawk Security SSA (ID: 334049999223)",
         "failedResources": [
             {
                 "accountId": "870047315808",

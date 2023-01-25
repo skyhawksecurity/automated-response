@@ -4,13 +4,13 @@
    ],
    "accountVendor":"AWS",
    "objectType":"Alert",
-   "objectPortalURL":"https://portal.cwp.radwarecloud.com/#/data-center/alert-details/300189817612",
+   "objectPortalURL":"https://app.skyhawk.security/#/data-center/alert-details/300189817612",
    "id":"300189817612",
    "title":"Port Scanning",
    "score":"7",
    "createdDate":"2019-07-20T16:28:03",
    "updatedDate":"2019-07-20T16:33:29",
-   "vendor":"Radware",
+   "vendor":"SkyhawkSecurity",
    "apiVersion":"1.00",
    "status":"NEW",
    "involvedResource":[
@@ -58,12 +58,12 @@
       {
          "name":"shareAndRemoveEC2SnapshotPublic",
          "activityId":"300189846167",
-         "title":"Share and unshare of storage volume snapshots by role radware-cwp-attack-test-role",
+         "title":"Share and unshare of storage volume snapshots by role skyhawk-syn-attack-test-role",
          "detectionTime":"2019-07-20T16:33:29",
          "attackStage":"DATA EXFILTRATION",
          "source":"CloudTrail",
          "invocationSource":"34.239.1.48",
-         "identity":"arn:aws:iam::870047315808:role/radware-cwp-attack-test-role",
+         "identity":"arn:aws:iam::870047315808:role/skyhawk-syn-attack-test-role",
          "affectedResources":{
             "targetComputer":"i-0f1a54ada9b4f46c0",
             "snapshotId":"snap-0f01db565d9f87aff"
